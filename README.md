@@ -6,7 +6,7 @@ In this repo I'll demo how to combine and utilise 3 great technologies:
 - [Milvus](https://milvus.io/docs/overview.md) for the vector search.
 
 ## Table of contents:
-- [Step 1 - Starting standalone Milvus instance with Docker](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-1---start-standalone-milvus-instance-with-docker)
+- [Step 1 - Starting standalone Milvus instance with Docker](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-1---starting-standalone-milvus-instance-with-docker)
 - [Step 2 - Setting up local environment](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-2---setting-up-local-environment)
 - [Step 3 - Preparing data]
 - [Step 4 - Question answering]
@@ -28,6 +28,11 @@ docker ps
 > **Note:** If you want to clean-up resources, you can stop Milvus containers with ```sudo docker compose down``` command, delete content of the *volumes* directory and remove relevant Docker images from your machine.
 
 ## Step 2 - Setting up local environment
+
+1. Install required Python packages for Azure OpenAI, LangChain and Milvus, by using pip command and provided requirements.txt file.
+```
+pip install -r requirements.txt
+```   
 
 ## Step 3 - Preparing data
 
