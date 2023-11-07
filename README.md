@@ -33,9 +33,31 @@ docker ps
 ```
 pip install -r requirements.txt
 ```
-2. Create environment variables OPENAI_API_DEPLOY, OPENAI_API_BASE and OPENAI_API_KEY, and assign to them values of your Azure OpenAI deployment settings.
+2. Create environment variables OPENAI_API_BASE, OPENAI_API_DEPLOY, OPENAI_API_DEPLOY_EMBED, OPENAI_API_KEY and OPENAI_API_VERSION, and assign values of your Azure OpenAI deployment settings.
    ![screenshot_2.2_azure](images/aoai_milvus_step2.2.png)
 
 ## Step 3 - Preparing data
+
+> **Note:** Steps 3 and 4 are implemented in provided Jupyter notebook.
+1. Use LangChain PDF document loader and split into chunks. By default, LangChain uses RecursiveCharacterTextSplitter.
+``` Python
+loader = PyPDFLoader("data/NorthwindHealthPlus_BenefitsDetails.pdf")
+pages = loader.load_and_split()
+```
+2. Initiate OpenAIEmbeddings class with endpoint details of your Azure OpenAI embedding model. At the time of writing, endpoint of text-embedding-ada-002 was supporting **16** embeddings per batch.
+> **Note:** LangChain Python package wrongly calls batch size parameter as "chunk_size", while JavaScript package correcty calls it batchSize. See reference URLs in Jupyter notebook.
+``` Python
+embeddings = OpenAIEmbeddings(engine=ADA_deployment, chunk_size=16);
+```
+3. Convert chunked text into vector embeddings and upload them into Milvus vector store, created in Step 1 above.
+``` Python
+vector_store = Milvus.from_documents(
+    pages,
+    embedding=embeddings,
+    collection_name="YOUR_COLLECTION_NAME",
+    connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT}
+)
+```
+4. 
 
 ## Step 4 - Question answering
