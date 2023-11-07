@@ -8,16 +8,16 @@ In this repo I'll demo how to utilise Whisper models offline or consume them thr
 Each option from the table of contents below is wrapped into a functional Web interface, powered by [Gradio](https://www.gradio.app/) platform.
 
 ## Table of contents:
-- [Option 0 - Access to Whisper models in offline mode](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-0---access-to-whisper-models-in-offline-mode)
-- [Option 1 - Access to Whisper models via Azure OpenAI endpoint](https://github.com/LazaUK/AOAI-Whisper-Gradio/tree/main#option-1---access-to-whisper-models-via-azure-openai-endpoint)
-- [Option 2 - Access to Whisper models via Azure AI Speech endpoint](https://github.com/LazaUK/AOAI-Whisper-Gradio/blob/main#option-2---access-to-whisper-models-via-azure-ai-speech-endpoint)
+- [Step 1 - Start standalone Milvus instance with Docker](https://github.com/LazaUK/)
+
 
 ## Step 1 - Start standalone Milvus instance with Docker
 
 1. Download the latest version of [docker-compose.yml](https://github.com/milvus-io/milvus/releases/download/v2.3.2/milvus-standalone-docker-compose.yml) YAML file;
-2. Start the Milvus Docker instance with
+2. Start the Milvus Docker instance with the Docker Compose command:
 ```
-sudo docker-compose up -d
+docker-compose up -d
 ```
-3. 
-4. 
+3. You should get confirmation that the network has been setup and 3 constainers started:
+   ![screenshot_1.3_docker](images/aoai_milvus_step1.3.png)
+5. 
