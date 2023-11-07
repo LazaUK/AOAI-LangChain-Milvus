@@ -7,7 +7,9 @@ In this repo I'll demo how to combine and utilise 3 great technologies:
 
 ## Table of contents:
 - [Step 1 - Start standalone Milvus instance with Docker](https://github.com/LazaUK/AOAI-LangChain-Milvus#step-1---start-standalone-milvus-instance-with-docker)
-
+- [Step 2 - Setting local environment]
+- [Step 3 - Preparing Data]
+- [Step 4 - Question answering]
 
 ## Step 1 - Start standalone Milvus instance with Docker
 
@@ -23,7 +25,7 @@ docker-compose up -d
 docker compose ps
 docker ps
 ```
-> **Note:** If you want to clean-up resources, you can stop Milvus containers with ```sudo docker compose down``` command, delete content of the **volumes** directory and remove relevant Docker images from your machine.
+> **Note:** If you want to clean-up resources, you can stop Milvus containers with ```sudo docker compose down``` command, delete content of the *volumes* directory and remove relevant Docker images from your machine.
 
 ## Step 2 - Setting local environment
 
