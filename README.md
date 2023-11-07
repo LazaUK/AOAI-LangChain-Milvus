@@ -18,21 +18,23 @@ In this repo I'll demo how to combine and utilise 3 great technologies:
 ```
 docker-compose up -d
 ```
-3. You should get confirmation that the network has been setup and 3 constainers started:
+3. You should get confirmation that the network has been created and 3 containers started:
    ![screenshot_1.3_docker](images/aoai_milvus_step1.3.png)
 4. You can also verify containers' running status with either of these commands:
 ```
 docker compose ps
 docker ps
 ```
-> **Note:** If you want to clean-up resources, you can stop Milvus containers with ```sudo docker compose down``` command, delete content of the *volumes* directory and remove relevant Docker images from your machine.
+> **Note:** If you want to clean-up resources, you can stop Milvus containers with ```docker compose down``` command, delete content of the created *volumes* directory and remove relevant Docker images from your machine.
 
 ## Step 2 - Setting up local environment
 
 1. Install required Python packages for Azure OpenAI, LangChain and Milvus, by using pip command and provided requirements.txt file.
 ```
 pip install -r requirements.txt
-```   
+```
+2. Create environment variables OPENAI_API_DEPLOY, OPENAI_API_BASE and OPENAI_API_KEY, and assign to them values of your Azure OpenAI deployment settings.
+   ![screenshot_2.2_azure](images/aoai_milvus_step2.2.png)
 
 ## Step 3 - Preparing data
 
