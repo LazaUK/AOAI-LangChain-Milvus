@@ -8,8 +8,8 @@ In this repo I'll demo how to combine and utilise 3 great technologies:
 ## Table of contents:
 - [Step 1 - Starting standalone Milvus instance with Docker](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-1---starting-standalone-milvus-instance-with-docker)
 - [Step 2 - Setting up local environment](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-2---setting-up-local-environment)
-- [Step 3 - Preparing data]
-- [Step 4 - Question answering]
+- [Step 3 - Preparing data](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-3---preparing-data)
+- [Step 4 - Question answering](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-4---question-answering)
 
 ## Step 1 - Starting standalone Milvus instance with Docker
 
