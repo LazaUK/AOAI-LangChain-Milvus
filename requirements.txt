@@ -1,0 +1,4 @@
+pymilvus
+langchain
+openai
+tiktoken
