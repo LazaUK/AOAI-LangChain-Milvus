@@ -58,6 +58,13 @@ vector_store = Milvus.from_documents(
     connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT}
 )
 ```
-4. 
+4. If you want to run your quesries against specific Milvus collection, you can retrieve next time by direct initialisation of Milvus vector store.
+``` Python
+vector_store = Milvus(
+    embedding_function=embeddings,    
+    collection_name="YOUR_COLLECTION_NAME",
+    connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT}
+)
+```
 
 ## Step 4 - Question answering
