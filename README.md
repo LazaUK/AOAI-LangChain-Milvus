@@ -6,8 +6,8 @@ In this repo I'll demo how to combine and utilise 3 great technologies:
 - [Milvus](https://milvus.io/docs/overview.md) for the vector search.
 
 ## Table of contents:
-- [Step 1 - Starting standalone Milvus instance with Docker](https://github.com/LazaUK/AOAI-LangChain-Milvus#step-1---start-standalone-milvus-instance-with-docker)
-- [Step 2 - Setting up local environment]
+- [Step 1 - Starting standalone Milvus instance with Docker](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-1---start-standalone-milvus-instance-with-docker)
+- [Step 2 - Setting up local environment](https://github.com/LazaUK/AOAI-LangChain-Milvus/tree/main#step-2---setting-up-local-environment)
 - [Step 3 - Preparing data]
 - [Step 4 - Question answering]
 
