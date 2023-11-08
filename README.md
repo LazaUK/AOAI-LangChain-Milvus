@@ -44,7 +44,7 @@ pip install -r requirements.txt
 loader = PyPDFLoader("data/NorthwindHealthPlus_BenefitsDetails.pdf")
 pages = loader.load_and_split()
 ```
-2. Initiate OpenAIEmbeddings class with endpoint details of your Azure OpenAI embedding model. At the time of writing, endpoint of text-embedding-ada-002 was supporting up to **16** embeddings per batch.
+2. Initiate OpenAIEmbeddings class with endpoint details of your Azure OpenAI embedding model. At the time of writing, endpoint of text-embedding-ada-002 was supporting up to **16** inputs per batch.
 > **Note:** LangChain Python package wrongly calls batch size parameter as "chunk_size", while JavaScript package correcty calls it batchSize. See reference URLs in Jupyter notebook.
 ``` Python
 embeddings = OpenAIEmbeddings(engine=ADA_deployment, chunk_size=16);
@@ -58,7 +58,7 @@ vector_store = Milvus.from_documents(
     connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT}
 )
 ```
-4. If you want to run your quesries against specific Milvus collection, you can retrieve next time by direct initialisation of Milvus vector store.
+4. If you want to run your queries against existing Milvus collection, you can access it any time by direct initialisation of the Milvus vector store.
 ``` Python
 vector_store = Milvus(
     embedding_function=embeddings,    
@@ -69,11 +69,11 @@ vector_store = Milvus(
 
 ## Step 4 - Question answering
 
-1. To run simple similarity search you can call relevant LangChain function. This will return back the chunk with the similar vector.
+1. To run simple similarity search you can call relevant LangChain function. Vector store will return document chunk with a vector close to your query's one.
 ``` Python
 docs = vector_store.similarity_search(query)
 ```
-You can further process then the response structure, to retrieve content and source details, and produce something similar to this:
+You can re-shape the response structure, if required, to retrieve content + source details, and produce something like this:
 ``` JSON
 Original source document: data/NorthwindHealthPlus_BenefitsDetails.pdf
 Original source document page: 93
@@ -82,7 +82,7 @@ The Northwind Health Plus plan is a group health plan that is sponsored by Conto
 administered by Northwind Health. As a participant in this group plan, you will have access 
 to a wide range of health benefits and services. 
 ```
-2.  However, we can do better. Instead of receiving the whole page back, there is more elegant solutuion to chain the output of above similarity search with GPT model and get summarised response.
+2.  However, we can do better. Instead of getting back the whole document chunk, more elegant solutuion is to chain the earlier output of similarity search with an Azure OpenAI GPT model and summarise it.
 ``` Python
 chain = load_qa_with_sources_chain(
     llm=AzureOpenAI(engine=GPT_deployment),
@@ -94,7 +94,7 @@ response = chain(
     return_only_outputs=True
 )
 ```
-3. Another option is to replace the above 2 steps with a single Retrieval-Augmented Generation (RAG).
+3. Another option would be to replace the above two steps with a single Retrieval-Augmented Generation (RAG) chain.
 ``` Python
 rag_chain = RetrievalQA.from_chain_type(
     llm=AzureOpenAI(engine=GPT_deployment),
