@@ -44,7 +44,7 @@ pip install -r requirements.txt
 loader = PyPDFLoader("data/NorthwindHealthPlus_BenefitsDetails.pdf")
 pages = loader.load_and_split()
 ```
-2. Initiate OpenAIEmbeddings class with endpoint details of your Azure OpenAI embedding model. At the time of writing, endpoint of text-embedding-ada-002 was supporting **16** embeddings per batch.
+2. Initiate OpenAIEmbeddings class with endpoint details of your Azure OpenAI embedding model. At the time of writing, endpoint of text-embedding-ada-002 was supporting up to **16** embeddings per batch.
 > **Note:** LangChain Python package wrongly calls batch size parameter as "chunk_size", while JavaScript package correcty calls it batchSize. See reference URLs in Jupyter notebook.
 ``` Python
 embeddings = OpenAIEmbeddings(engine=ADA_deployment, chunk_size=16);
@@ -68,3 +68,18 @@ vector_store = Milvus(
 ```
 
 ## Step 4 - Question answering
+
+1. To run simple similarity search you can call relevant LangChain function. This will return back the chunk with the similar vector.
+``` Python
+docs = vector_store.similarity_search(query)
+```
+You can further process then the response structure, to retrieve content and source details to print something similar to this:
+``` JSON
+Original source document: data/NorthwindHealthPlus_BenefitsDetails.pdf
+Original source document page: 93
+--------------------------------------
+The Northwind Health Plus plan is a group health plan that is sponsored by Contoso and 
+administered by Northwind Health. As a participant in this group plan, you will have access 
+to a wide range of health benefits and services. 
+```
+2.  
