@@ -73,7 +73,7 @@ vector_store = Milvus(
 ``` Python
 docs = vector_store.similarity_search(query)
 ```
-You can further process then the response structure, to retrieve content and source details to print something similar to this:
+You can further process then the response structure, to retrieve content and source details, and produce something similar to this:
 ``` JSON
 Original source document: data/NorthwindHealthPlus_BenefitsDetails.pdf
 Original source document page: 93
@@ -82,4 +82,22 @@ The Northwind Health Plus plan is a group health plan that is sponsored by Conto
 administered by Northwind Health. As a participant in this group plan, you will have access 
 to a wide range of health benefits and services. 
 ```
-2.  
+2.  However, we can do better. Instead of receiving the whole page back, there is more elegant solutuion to chain the output of above similarity search with GPT model and get summarised response.
+``` Python
+chain = load_qa_with_sources_chain(
+    llm=AzureOpenAI(engine=GPT_deployment),
+    chain_type="map_reduce",
+    return_intermediate_steps=True
+)
+response = chain(
+    {"input_documents": docs, "question": query},
+    return_only_outputs=True
+)
+```
+3. Another option is to replace the above 2 steps with a single Retrieval-Augmented Generation (RAG).
+``` Python
+rag_chain = RetrievalQA.from_chain_type(
+    llm=AzureOpenAI(engine=GPT_deployment),
+    retriever=vector_store.as_retriever()
+)
+```
